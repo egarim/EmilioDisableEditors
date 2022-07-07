@@ -14,8 +14,9 @@ using System.Text;
 
 namespace EmilioDisableEditors.Module.BusinessObjects
 {
+    //HACK all items but the one listed https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.ConditionalAppearance.AppearanceAttribute.TargetItems
     [DefaultClassOptions]
-    [DevExpress.ExpressApp.ConditionalAppearance.Appearance("Disable editors", Enabled = false, Criteria = "IsNewObject(This)",TargetItems ="*")]
+    [DevExpress.ExpressApp.ConditionalAppearance.Appearance("Disable editors", Enabled = false, Criteria = "IsNull(Name)", TargetItems ="*;Name")]
     //[ImageName("BO_Contact")]
     //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
     //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
@@ -38,6 +39,7 @@ namespace EmilioDisableEditors.Module.BusinessObjects
         string lastName;
         string name;
 
+        [ImmediatePostData()]
         [Size(SizeAttribute.DefaultStringMappingFieldSize)]
         public string Name
         {
